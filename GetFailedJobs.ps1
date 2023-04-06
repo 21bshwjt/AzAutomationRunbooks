@@ -1,5 +1,5 @@
 # Get the Azure Automation connection object
-$connection = Get-AutomationConnection -Name "AzureSPI"
+$connection = Get-AutomationConnection -Name "<SPI>"
 
 # Connect to Azure using the connection object
 Try {
@@ -14,10 +14,10 @@ catch {
 }
 
 # Set the subscription context
-Set-AzContext -SubscriptionId "c7791184-ab41-458a-b044-f371730f1d84" | Out-Null
+Set-AzContext -SubscriptionId "<Sub_Id>" | Out-Null
 
 $query = "AzureDiagnostics | where ResultType == 'Failed' | project TimeGenerated, RunbookName_s, RunOn_s ,ResultType | where TimeGenerated > now() - 4h | sort by TimeGenerated asc"
-$WorkspaceID = "76f2115e-891c-44d4-90e0-b89a60db6602"
+$WorkspaceID = "WorkspaceID"
 $kqlQuery = Invoke-AzOperationalInsightsQuery -WorkspaceId $WorkspaceID -Query $query
 
 If ($kqlQuery.Results) {
