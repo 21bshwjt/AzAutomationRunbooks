@@ -2,11 +2,17 @@
 # Get the Azure Automation connection object
 $connection = Get-AutomationConnection -Name "<SPIName>"
 
-# Connect to Azure using the connection object
+Try
+{
 Connect-AzAccount -ServicePrincipal `
     -Tenant $connection.TenantID `
     -ApplicationId $connection.ApplicationID `
     -CertificateThumbprint $connection.CertificateThumbprint
+}
+catch {
+    Write-Error -Message $_.Exception
+    throw $_.Exception
+}
 
 # Set the subscription context
 Set-AzContext -SubscriptionId "<Subscription_ID>"
