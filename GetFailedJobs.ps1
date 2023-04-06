@@ -1,3 +1,4 @@
+# Runon : Azure 
 # Get the Azure Automation connection object
 $connection = Get-AutomationConnection -Name "<SPI>"
 
