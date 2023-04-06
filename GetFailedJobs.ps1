@@ -29,5 +29,5 @@ If ($kqlQuery.Results) {
     # Send Email (If needed)
 }
 else {
-    Write-Output "There is no failure job sincs last 4 hours."
+    Write-Output "There is no failure job since last 4 hours."
 }
