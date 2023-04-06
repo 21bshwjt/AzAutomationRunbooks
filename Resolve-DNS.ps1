@@ -1,11 +1,7 @@
-Try
-{
-Connect-AzAccount -ServicePrincipal `
-    -Tenant $connection.TenantID `
-    -ApplicationId $connection.ApplicationID `
-    -CertificateThumbprint $connection.CertificateThumbprint
-}
-catch {
-    Write-Error -Message $_.Exception
-    throw $_.Exception
-}
+# Runon : Hybrid worker
+param
+( 
+        [Parameter(Mandatory=$true)][ValidateNotNullOrEmpty()] 
+        [String] $VMName
+)
+Resolve-DnsName -Name ($VMName+"."+$env:USERDNSDOMAIN) | Select-Object Name,IPAddress
