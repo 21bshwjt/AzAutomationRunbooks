@@ -2,10 +2,16 @@
 $connection = Get-AutomationConnection -Name "AzureSPI"
 
 # Connect to Azure using the connection object
-Connect-AzAccount -ServicePrincipal `
-    -Tenant $connection.TenantID `
-    -ApplicationId $connection.ApplicationID `
-    -CertificateThumbprint $connection.CertificateThumbprint | Out-Null
+Try {
+    Connect-AzAccount -ServicePrincipal `
+        -Tenant $connection.TenantID `
+        -ApplicationId $connection.ApplicationID `
+        -CertificateThumbprint $connection.CertificateThumbprint | Out-Null
+}    
+catch {
+    Write-Error -Message $_.Exception
+    throw $_.Exception
+}
 
 # Set the subscription context
 Set-AzContext -SubscriptionId "c7791184-ab41-458a-b044-f371730f1d84" | Out-Null
