@@ -1,3 +1,7 @@
+<#
+Azure KeyVault - AutoDisable older Versions of Secrets from a KeyVault. 
+#>
+
 # Get the Azure Automation connection object
 $connection = Get-AutomationConnection -Name "AzureSPI"
 
