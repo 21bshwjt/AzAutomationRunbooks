@@ -2,7 +2,7 @@
 Azure KeyVault - AutoDisable older Versions of Secrets from a KeyVault.
 ######################################################################
 ### Change into the Code ###
-You need to change line numbers 7 (Your_SPI), 21 (Subscription_ID) & 24 (KeyVault).
+You need to change line numbers 10 (Your_SPI), 24 (Subscription_ID) & 27 (KeyVault).
 ###----------------------###
 #>
 
