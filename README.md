@@ -13,7 +13,7 @@
 - Import that certificate into automation account.
 - Create a SPI *connection* under Automation account.
 - Create a PowerShell RunBook.
-- Test the below code.
+- Test the below code from the Automation account.
 ```powershell
 # Azure DevOps
 
