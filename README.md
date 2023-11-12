@@ -6,6 +6,33 @@
 - Supported RunBooks - **PowerShell** & **Python**.
 
 ## Azure Automation Runbooks-Implementation
+- Create an Azure Automation Account.
+- Create a Service principle.
+- Grant Contributor access on subscription/RG for that newly created SPI.
+- Create a SPI *connection* under Automation account.
+- Create a PowerShell RunBook.
+- Test the below code.
+```powershell
+# Azure DevOps
+
+# Get the Azure Automation connection object
+$connection = Get-AutomationConnection -Name "<AzureConnection_Name>"
+
+# Connect to Azure using the connection object
+Try {
+    Connect-AzAccount -ServicePrincipal `
+        -Tenant $connection.TenantID `
+        -ApplicationId $connection.ApplicationID `
+        -CertificateThumbprint $connection.CertificateThumbprint | Out-Null
+}    
+catch {
+    Write-Error -Message $_.Exception
+    throw $_.Exception
+}
+
+Set-AzContext -SubscriptionId "<SubID>"
+Get-AzVM -ResourceGroupName "<RG_Name>" | Select-object name
+```
 
 
 
