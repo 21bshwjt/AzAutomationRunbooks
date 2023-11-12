@@ -30,12 +30,11 @@ If ($AccountExistorNot -eq $true) {
         If ($PasswordExpired -eq $false) {
 
             # Get AD Secret Expiry
-            $GetUserObj = Get-ADUser -filter { SamAccountName -eq $SamId -and Enabled -eq $True -and PasswordNeverExpires -eq $False } –Properties "SamAccountName", "msDS-UserPasswordExpiryTimeComputed", "UserPrincipalName", "Enabled","LockedOut", "DistinguishedName" |
-                Select-Object -Property "SamAccountName", @{Name = "ExpiryDate"; Expression = { [datetime]::FromFileTime($_."msDS-UserPasswordExpiryTimeComputed") } }, "UserPrincipalName", "Enabled", "LockedOut", "DistinguishedName"
+            $GetUserObj = Get-ADUser -filter { SamAccountName -eq $SamId -and Enabled -eq $True -and PasswordNeverExpires -eq $False } –Properties "SamAccountName", "msDS-UserPasswordExpiryTimeComputed", "UserPrincipalName", "Enabled", "LockedOut", "DistinguishedName" |
+            Select-Object -Property "SamAccountName", @{Name = "ExpiryDate"; Expression = { [datetime]::FromFileTime($_."msDS-UserPasswordExpiryTimeComputed") } }, "UserPrincipalName", "Enabled", "LockedOut", "DistinguishedName"
             Write-Output "$SamId password will be expired on: $($GetUserObj.ExpiryDate)"
             Write-Output "<=====================>"
             Write-Output $GetUserObj
-
 
         }
 
