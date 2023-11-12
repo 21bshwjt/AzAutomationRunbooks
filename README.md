@@ -9,6 +9,8 @@
 - Create an Azure Automation Account.
 - Create a Service principle.
 - Grant Contributor access on subscription/RG for that newly created SPI.
+- Bind a certificate with that SPI.
+- Import that certificate into automation account.
 - Create a SPI *connection* under Automation account.
 - Create a PowerShell RunBook.
 - Test the below code.
