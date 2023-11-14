@@ -26,4 +26,4 @@ Set-AzContext -SubscriptionId "SubID"
 $RGArray = @("RG1", "RG2", "RG3")
 
 # Poweroff the VMs
-$RGArray | ForEach-Object -Process {Get-AzVm -ResourceGroupName $PSItem | Stop-AzVM -Force -AsJob -Verbose}
+$RGArray | ForEach-Object -Process {Get-AzVm -ResourceGroupName $PSItem | Stop-AzVM -Force -Verbose}
