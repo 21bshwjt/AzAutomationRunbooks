@@ -13,7 +13,7 @@
 - **Source Control**
 
 ## Use case Example Flow & Enhancement
-- Run a job (Runbook) on multiple On-Prem domains to get the Powered-off VMs (Hyper-V/V-Centers) report in CSV format.
+- Run a job (Runbook) on multiple On-Prem domains to get the Powered-off VMs (Hyper-V/V-Centers) reports in CSV format.
 - Import those CSVs into an Azure Storage blob.
 - Run another job (Runbook) & download all the CSVs & send those reports (CSVs) to the respective Team.
 - Run single code from a single place on multiple domains.
