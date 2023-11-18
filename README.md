@@ -13,14 +13,14 @@
 - Scalability and Flexibility.
 - Streamlined Maintenance.
 - [*MSFT KB - Hybrid Workers*](https://learn.microsoft.com/en-us/azure/automation/automation-hybrid-runbook-worker).
-- *Schedule a single code for "n" number of domains*.
+- **Schedule a single code for "n" number of On-Prem domains**.
 
 ## Azure Automation Runbooks-Implementation
 - Create an Azure Automation Account.
 - Create a Service principle.
 - Grant Contributor access on subscription/RG for that newly created SPI.
 - Bind a certificate with that SPI.
-- Import that certificate into automation account.
+- Import that certificate into the automation account.
 - Create a SPI *connection* under Automation account.
 - Create a PowerShell RunBook.
 - Test the below code from the Automation account.
