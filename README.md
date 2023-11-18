@@ -19,7 +19,7 @@
 - Run single code from a single place on multiple domains.
 - Send all CSVs using a single e-mail.
 
-### **In this scenario, Azure Enterprise Application facilitates authentication to Azure, but Azure AD User-Managed Identity can also be utilized for achieving Azure Single Sign-On (SSO)**.
+#### In this scenario, Azure Enterprise Application facilitates authentication to Azure, but Azure AD User-Managed Identity can also be utilized for achieving Azure Single Sign-On (SSO).
   
 ### Sample Code to upload the CSV into a Storage Blob
 ```powershell
