@@ -45,7 +45,7 @@ catch {
 Set-AzContext -SubscriptionId "<SubID>"
 Get-AzVM -ResourceGroupName "<RG_Name>" | Select-object name
 ```
-### Test the below code from VM/Hybrid Worker.
+### Test the below code from Windows VM/Hybrid Worker.
 ```powershell
 # Need to import the same certificate(.pfx) into the computer store.
 $ThumbPrint = (Get-ChildItem "Cert:\LocalMachine\my" | Where-Object { $_.Subject -eq "CN=<Certificate Subject>" }).Thumbprint
