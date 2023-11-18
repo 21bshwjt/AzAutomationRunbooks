@@ -5,7 +5,7 @@
 - [*MSFT KB - Automation Hybrid Runbook Worker overview*](https://learn.microsoft.com/en-us/azure/automation/automation-hybrid-runbook-worker)
 - Supported RunBooks - **PowerShell** & **Python**.
   
-## Use cases
+## Use case
 - **Automate Routine tasks on Azure & On-Prem**.
 - **Schedule Jobs from a centralized location & run on multiple environments**.
 - **Leverage Azure SSO**.
