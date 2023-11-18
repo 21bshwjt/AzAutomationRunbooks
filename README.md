@@ -113,6 +113,6 @@ $TenantId = "*****************************"
 Connect-AzAccount -CertificateThumbprint $ThumbPrint -ApplicationId $AppID -Tenant $TenantId -ServicePrincipal
 Set-AzContext -SubscriptionId "***************************"
 ```
-
+### Azure Enterprise Application is used to authenticate to Azure in this case but Azure AD User-managed identity can be used also for Azure SSO.  
 
 
