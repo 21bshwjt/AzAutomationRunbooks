@@ -80,7 +80,7 @@ azcopy copy $localPath $containerSASURI
 - Import that certificate into the automation account.
 - Create a SPI *connection* under Automation account.
 - Create a PowerShell RunBook.
-- **Test the below code from the Azure Automation account to test the Authentication/Azure SSO.
+- **Test the below code from the Azure Automation account to test the Authentication/Azure SSO**.
  
 ```powershell
 # Azure DevOps
