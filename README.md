@@ -5,6 +5,62 @@
 - [*MSFT KB - Automation Hybrid Runbook Worker overview*](https://learn.microsoft.com/en-us/azure/automation/automation-hybrid-runbook-worker)
 - Supported RunBooks - **PowerShell** & **Python**.
   
+## Use cases
+- **Automate Routine tasks on Azure & On-Prem**.
+- **Schedule Jobs from a centralized location & run on multiple environments**.
+- **Leverage Azure SSO**.
+- **Streamlined Maintenance**.
+- **Source Control**
+
+## Use case Example Flow & Enhancement
+- Run a job (Runbook) on multiple On-Prem domains to get the Powered-off VMs (Hyper-V/V-Centers) report in CSV format.
+- Import those CSVs into an Azure Storage blob.
+- Run another job (Runbook) & download all the CSVs & send those reports (CSVs) to the respective Team.
+- Run single code from a single place on multiple domains.
+- Send all CSVs using a single e-mail.
+  
+### Sample Code to upload the CSV into a Storage Blob
+```powershell
+#pwsh
+# Get the Azure Automation connection object
+$connection = Get-AutomationConnection -Name "<AZ_SPI_Connection_Name>"
+
+# Connect to Azure using the connection object
+Try {
+    Connect-AzAccount -ServicePrincipal `
+        -Tenant $connection.TenantID `
+        -ApplicationId $connection.ApplicationID `
+        -CertificateThumbprint $connection.CertificateThumbprint | Out-Null
+}    
+catch {
+    Write-Error -Message $_.Exception
+    throw $_.Exception
+}
+# Set the subscription context
+Set-AzContext -SubscriptionId "<SUBID>" | Out-Null
+# Define Variables
+$storageAccountRG = "<storageAccountRG>"
+$storageAccountName = "<storageAccountName>"
+$storageContainerName = "<storageContainerName>"
+$localPath = "<Local_Path>"
+
+# Select the right Azure Subscription
+#Select-AzSubscription -SubscriptionId $SubscriptionId
+
+# Get Storage Account Key
+$storageAccountKey = (Get-AzStorageAccountKey -ResourceGroupName $storageAccountRG -AccountName $storageAccountName).Value[0]
+
+# Set AzStorageContext
+$destinationContext = New-AzStorageContext -StorageAccountName $storageAccountName -StorageAccountKey $storageAccountKey
+
+# Generate SAS URI
+$containerSASURI = New-AzStorageContainerSASToken -Context $destinationContext -ExpiryTime(get-date).AddSeconds(3600) -FullUri -Name $storageContainerName -Permission rw
+
+# Upload File using AzCopy
+Write-Output "Uploading $Filename into $storageContainerName container"
+azcopy copy $localPath $containerSASURI
+```  
+
 ## Benefits of Azure Automation Account Hybrid workers
 - Extended Automation Reach.
 - Unified Management; Azure Automation facilitates the centralized management of resources, seamlessly integrating both cloud and on-premises environments.
@@ -24,6 +80,7 @@
 - Create a SPI *connection* under Automation account.
 - Create a PowerShell RunBook.
 - Test the below code from the Automation account.
+ 
 ```powershell
 # Azure DevOps
 
