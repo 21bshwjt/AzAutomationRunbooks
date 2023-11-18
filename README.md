@@ -70,7 +70,6 @@ azcopy copy $localPath $containerSASURI
 - Enhanced Security and Compliance.
 - Scalability and Flexibility.
 - Streamlined Maintenance.
-- [*MSFT KB - Hybrid Workers*](https://learn.microsoft.com/en-us/azure/automation/automation-hybrid-runbook-worker).
 - **Schedule a single code for "n" number of On-Prem domains**.
 
 ## Azure Automation Runbooks-Implementation
