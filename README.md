@@ -80,7 +80,7 @@ azcopy copy $localPath $containerSASURI
 - Import that certificate into the automation account.
 - Create a SPI *connection* under Automation account.
 - Create a PowerShell RunBook.
-- Test the below code from the Automation account.
+- **Test the below code from the Azure Automation account to test the Authentication/Azure SSO.
  
 ```powershell
 # Azure DevOps
@@ -103,7 +103,7 @@ catch {
 Set-AzContext -SubscriptionId "<SubID>"
 Get-AzVM -ResourceGroupName "<RG_Name>" | Select-object name
 ```
-### Test the below code from Windows VM/Hybrid Worker.
+### Test the below code from Windows VM/Hybrid Worker to test the Authentication/Azure SSO.
 ```powershell
 # Need to import the same certificate(.pfx) into the computer store.
 $ThumbPrint = (Get-ChildItem "Cert:\LocalMachine\my" | Where-Object { $_.Subject -eq "CN=<Certificate Subject>" }).Thumbprint
