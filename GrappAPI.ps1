@@ -14,8 +14,8 @@ catch {
 # Set the subscription context
 Set-AzContext -SubscriptionId "<Sub_Id>" | Out-Null
 
-Connect-MgGraph -ClientId $client_id -TenantId $tenant_id -CertificateThumbprint $thumb_print 
+Connect-MgGraph -ClientId $client_id -TenantId $tenant_id -CertificateThumbprint $thumb_print -NoWelcome
 
 $result = Invoke-MgGraphRequest -Method GET -Uri "https://graph.microsoft.com/v1.0/users"
-$result.value
+#$result.value
 $result.value | Select-Object id,displayName,userPrincipalName
