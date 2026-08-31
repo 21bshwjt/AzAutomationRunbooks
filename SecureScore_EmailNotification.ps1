@@ -1,5 +1,6 @@
 # ==========================================
 # 0. Automation Account Settings
+# KB for Creds management: https://learn.microsoft.com/en-us/azure/automation/shared-resources/credentials?tabs=azure-powershell
 # ==========================================
 $TenantIdVarName = "GraphTenantId"          # Automation Variable
 $CredName = "GraphAppCred"           # Automation Credential
