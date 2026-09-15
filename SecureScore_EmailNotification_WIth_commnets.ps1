@@ -4,6 +4,7 @@
 # (client credentials flow), pulls Entra ID Secure Score history for the
 # last N days, formats it as an HTML report, and emails it via Graph.
 # KB for Creds management: https://learn.microsoft.com/en-us/azure/automation/shared-resources/credentials?tabs=azure-powershell
+# Permissions : SecurityEvents.Read.All & Mail.Send
 # ==========================================
 $TenantIdVarName = "GraphTenantId"          # Name of the Automation Variable storing the Azure AD Tenant ID
 $CredName = "GraphAppCred"           # Name of the Automation Credential storing the App Registration's Client ID/Secret
