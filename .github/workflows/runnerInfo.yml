@@ -1,0 +1,35 @@
+name: Runner Info
+on: workflow_dispatch
+
+defaults:
+    run:
+        shell: pwsh
+
+jobs:
+    getRunnerInfo:
+        runs-on: ubuntu-latest
+        steps:
+            - run: |
+                  "=== RUNNER INFO ==="
+                  $PSVersionTable
+                  ""
+
+                  "=== ENV VARS ==="
+                  dir env:
+                  ""
+
+                  "=== CURRENT DIRECTORY ==="
+                  $PWD
+                  ""
+
+                  "=== VARIABLES ==="
+                  Get-Variable | format-table -auto name,value
+                  ""
+
+                  "=== LOADED MODULES ==="
+                  get-module | format-table -auto name,version
+                  ""
+
+                  "=== AVAILABLE MODULES ==="
+                  get-module -listavailable | format-table -auto name,version
+                  ""
