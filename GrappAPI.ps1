@@ -5,16 +5,13 @@ $connection = Get-AutomationConnection -Name "<Azure_SPI>"
 Try {
     Connect-MgGraph -ClientId $connection.ApplicationID `
         -TenantId $connection.TenantID `
-        -CertificateThumbprint $connection.CertificateThumbprint
-}    
+        -CertificateThumbprint $connection.CertificateThumbprint `
+        -NoWelcome
+}
 catch {
     Write-Error -Message $_.Exception
     throw $_.Exception
 }
-# Set the subscription context
-Set-AzContext -SubscriptionId "<Sub_Id>" | Out-Null
-
-Connect-MgGraph -ClientId $client_id -TenantId $tenant_id -CertificateThumbprint $thumb_print -NoWelcome
 
 $result = Invoke-MgGraphRequest -Method GET -Uri "https://graph.microsoft.com/v1.0/users"
 #$result.value

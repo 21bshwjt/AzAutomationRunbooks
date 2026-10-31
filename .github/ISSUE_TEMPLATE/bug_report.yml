@@ -1,0 +1,39 @@
+name: 🐛 Bug report
+description: A runbook fails or behaves unexpectedly
+labels: [bug]
+body:
+  - type: input
+    id: runbook
+    attributes:
+      label: Runbook
+      placeholder: e.g. KVSecretExpiryEmailNotifications.ps1
+    validations:
+      required: true
+  - type: dropdown
+    id: runon
+    attributes:
+      label: Runs on
+      options:
+        - Azure sandbox
+        - Hybrid Worker (Windows)
+        - Hybrid Worker (Linux)
+        - Local machine
+    validations:
+      required: true
+  - type: input
+    id: runtime
+    attributes:
+      label: PowerShell runtime
+      placeholder: e.g. 5.1, 7.2, 7.4
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Include the job output / error stream. **Remove tenant IDs, subscription IDs, secrets and email addresses.**
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect?

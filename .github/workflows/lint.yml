@@ -1,0 +1,39 @@
+name: PSScriptAnalyzer
+
+on:
+  push:
+    branches: [main]
+    paths: ['**.ps1', '.github/workflows/lint.yml']
+  pull_request:
+    paths: ['**.ps1', '.github/workflows/lint.yml']
+  workflow_dispatch:
+
+defaults:
+  run:
+    shell: pwsh
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install PSScriptAnalyzer
+        run: Install-Module PSScriptAnalyzer -Scope CurrentUser -Force
+
+      - name: Lint runbooks
+        run: |
+          $results = Invoke-ScriptAnalyzer -Path . -Recurse -Severity Error, Warning
+          $results | Format-Table ScriptName, Line, Severity, RuleName, Message -AutoSize -Wrap
+
+          # Surface findings as annotations on the PR diff
+          foreach ($r in $results) {
+              $level = if ($r.Severity -eq 'Error') { 'error' } else { 'warning' }
+              "::$level file=$($r.ScriptName),line=$($r.Line)::$($r.RuleName): $($r.Message)"
+          }
+
+          # Only errors fail the build; warnings are informational
+          $errors = @($results | Where-Object Severity -eq 'Error')
+          if ($errors.Count -gt 0) {
+              throw "$($errors.Count) PSScriptAnalyzer error(s) found."
+          }

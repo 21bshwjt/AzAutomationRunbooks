@@ -1,0 +1,24 @@
+name: 💡 Runbook request / idea
+description: Suggest a new runbook or an improvement
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What do you want to automate?
+      placeholder: e.g. Email a weekly report of unattached managed disks
+    validations:
+      required: true
+  - type: dropdown
+    id: runon
+    attributes:
+      label: Where should it run?
+      options:
+        - Azure sandbox
+        - Hybrid Worker
+        - Not sure
+  - type: textarea
+    id: notes
+    attributes:
+      label: Anything else?
+      description: Modules, permissions, links to docs...
